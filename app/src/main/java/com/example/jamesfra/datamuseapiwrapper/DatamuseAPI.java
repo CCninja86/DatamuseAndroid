@@ -3,46 +3,132 @@ package com.example.jamesfra.datamuseapiwrapper;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import com.koushikdutta.ion.Ion;
+
+import java.util.ArrayList;
+
 public class DatamuseAPI {
 
     private Context context;
     private DatamuseAPIResultsListener datamuseAPIResultsListener;
 
-    private String requestUrl = "https://api.datamuse.com/words?";
+    private static String requestUrl = "https://api.datamuse.com/words?";
 
-    public DatamuseAPI(Context context, DatamuseAPIResultsListener datamuseAPIResultsListener) {
-        this.context = context;
-        this.datamuseAPIResultsListener = datamuseAPIResultsListener;
+    public DatamuseAPI() {
+
     }
-
-    public void meaningLike(String word){
+    
+    public static void meaningLike(String word){
         checkForMultipleParams();
 
         requestUrl += "ml=" + word;
     }
 
-    public void soundsLike(String word){
+    public static void soundsLike(String word){
         checkForMultipleParams();
 
         requestUrl += "sl=" + word;
     }
 
-    public void execute(){
+    public static void spelledLike(String pattern){
+        checkForMultipleParams();
 
+        requestUrl += "sp=" + pattern;
     }
 
-    private void checkForMultipleParams(){
+    public static void synonymsOf(String word){
+        checkForMultipleParams();
+
+        requestUrl += "rel_syn=" + word;
+    }
+
+    public static void triggeredBy(String word){
+        checkForMultipleParams();
+
+        requestUrl += "rel_trg=" + word;
+    }
+
+    public static void antonymsOf(String word){
+        checkForMultipleParams();
+
+        requestUrl += "rel_ant=" + word;
+    }
+
+    public static void rhymesWith(String word){
+        checkForMultipleParams();
+
+        requestUrl += "rel_rhy=" + word;
+    }
+
+    public static void approximatelyRhymesWith(String word){
+        checkForMultipleParams();
+
+        requestUrl += "rel_nry=" + word;
+    }
+
+    public static void homophonesOf(String word){
+        checkForMultipleParams();
+
+        requestUrl += "rel_hom=" + word;
+    }
+
+    public static void consonantMatch(String word){
+        checkForMultipleParams();
+
+        requestUrl += "rel_cns=" + word;
+    }
+
+    public static void topicWords(ArrayList<String> topicWords){
+        if(topicWords.size() > 5){
+            throw new IllegalArgumentException("You must provide no more than 5 topic words");
+        }
+
+        checkForMultipleParams();
+
+        requestUrl += "topics=";
+
+        for (String word : topicWords){
+            requestUrl += word + ",";
+        }
+
+        requestUrl = requestUrl.substring(0, requestUrl.length() - 1);
+    }
+
+    public static void leftContext(String word){
+        checkForMultipleParams();
+
+        requestUrl += "lc=" + word;
+    }
+
+    public static void rightContext(String word){
+        checkForMultipleParams();
+
+        requestUrl += "rc=" + word;
+    }
+
+    public static void maxResults(int numResults){
+        checkForMultipleParams();
+
+        requestUrl += "max=" + numResults;
+    }
+
+    public static void get(){
+        new ExecuteAPIQueryTask(requestUrl).execute();
+    }
+
+    private static void checkForMultipleParams(){
         if(!requestUrl.substring(requestUrl.length()  - 1).equals("?")){
             requestUrl += "&";
         }
     }
 
 
-    private class ExecuteAPIQueryTask extends AsyncTask<Void, Void, Void> {
+    private static class ExecuteAPIQueryTask extends AsyncTask<Void, Void, Void> {
 
+        private String url;
 
-        public ExecuteAPIQueryTask(){
-
+        private ExecuteAPIQueryTask(String url){
+            this.url = url;
         }
 
         @Override
@@ -52,6 +138,8 @@ public class DatamuseAPI {
 
         @Override
         protected Void doInBackground(Void... voids) {
+
+
             return null;
         }
 
