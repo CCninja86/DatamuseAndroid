@@ -8,7 +8,8 @@ public class Word {
     private int numSyllables;
 
     public Word(){
-
+        // Don't want array to be null when Gson parses the JSON string
+        tags = new String[]{};
     }
 
     public String getWord() {
