@@ -1,4 +1,4 @@
-package com.example.jamesfra.datamuseapiwrapper;
+package com.example.jamesfra.datamuseandroid;
 
 import org.junit.Test;
 

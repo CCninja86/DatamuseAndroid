@@ -1,4 +1,4 @@
-package com.example.jamesfra.datamuseapiwrapper;
+package com.example.jamesfra.datamuseandroid;
 
 import android.os.AsyncTask;
 
@@ -10,14 +10,13 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DatamuseAPI {
+public class DatamuseAndroid {
 
-    private static DatamuseAPIResultsListener datamuseAPIResultsListener;
+    private static DatamuseAndroidResultsListener datamuseAndroidResultsListener;
     private static Gson gson;
 
     private static String requestUrl = "https://api.datamuse.com/words?";
@@ -26,7 +25,7 @@ public class DatamuseAPI {
     private static Map<String, String> validMetadataFlagsMap;
     private static String validMetadataFlagsString = "";
 
-    public DatamuseAPI() {
+    public DatamuseAndroid() {
         gson = new Gson();
         validMetadataFlagsMap = new HashMap<>();
         validMetadataFlagsMap.put("d", "Definitions");
@@ -40,16 +39,17 @@ public class DatamuseAPI {
             validMetadataFlagsBuilder.append(entry.getKey()).append(" (").append(entry.getValue()).append("), ");
         }
 
+        validMetadataFlagsString = validMetadataFlagsBuilder.toString();
         validMetadataFlagsString = validMetadataFlagsString.substring(0, validMetadataFlagsString.length() - 2);
     }
 
     /**
-     * Specify the instance of DatamuseAPIResultsListener to use.
-     * @param resultsListener the instance of DatamuseAPIResultsListener to use
+     * Specify the instance of DatamuseAndroidResultsListener to use.
+     * @param resultsListener the instance of DatamuseAndroidResultsListener to use
      * @return
      */
-    public DatamuseAPI withResultsListener(DatamuseAPIResultsListener resultsListener){
-        datamuseAPIResultsListener = resultsListener;
+    public DatamuseAndroid withResultsListener(DatamuseAndroidResultsListener resultsListener){
+        datamuseAndroidResultsListener = resultsListener;
 
         return this;
     }
@@ -59,7 +59,7 @@ public class DatamuseAPI {
      * @param word results will have a meaning related to this word
      * @return
      */
-    public DatamuseAPI meaningLike(String word){
+    public DatamuseAndroid meaningLike(String word){
         checkForMultipleParams();
 
         requestUrl += "ml=" + word;
@@ -72,7 +72,7 @@ public class DatamuseAPI {
      * @param word results will be pronounced similarly to this string of characters
      * @return
      */
-    public DatamuseAPI soundsLike(String word){
+    public DatamuseAndroid soundsLike(String word){
         checkForMultipleParams();
 
         requestUrl += "sl=" + word;
@@ -86,10 +86,36 @@ public class DatamuseAPI {
      * @param pattern results will be spelled like this word or pattern
      * @return
      */
-    public DatamuseAPI spelledLike(String pattern){
+    public DatamuseAndroid spelledLike(String pattern){
         checkForMultipleParams();
 
         requestUrl += "sp=" + pattern;
+
+        return this;
+    }
+
+    /**
+     * Return results that are popular nouns modified by the given adjective, e.g. gradual -> increase, long -> time, etc.
+     * @param adjective the adjective
+     * @return
+     */
+    public DatamuseAndroid nounsModifiedByAdjective(String adjective){
+        checkForMultipleParams();
+
+        requestUrl += "rel_jja=" + adjective;
+
+        return this;
+    }
+
+    /**
+     * Return results that are popular adjectives used to modify the given noun, e.g. beach -> sandy, tree -> tall, etc.
+     * @param noun the noun
+     * @return
+     */
+    public DatamuseAndroid adjectivesUsedToModifyNoun(String noun){
+        checkForMultipleParams();
+
+        requestUrl += "rel_jjb=" + noun;
 
         return this;
     }
@@ -99,7 +125,7 @@ public class DatamuseAPI {
      * @param word results will be synonyms of this word, e.g. ocean -> sea
      * @return
      */
-    public DatamuseAPI synonymsOf(String word){
+    public DatamuseAndroid synonymsOf(String word){
         checkForMultipleParams();
 
         requestUrl += "rel_syn=" + word;
@@ -112,7 +138,7 @@ public class DatamuseAPI {
      * @param word results will be triggered by this word, e.g. cow -> milking
      * @return
      */
-    public DatamuseAPI triggeredBy(String word){
+    public DatamuseAndroid triggeredBy(String word){
         checkForMultipleParams();
 
         requestUrl += "rel_trg=" + word;
@@ -125,10 +151,91 @@ public class DatamuseAPI {
      * @param word results will be antonyms of this word, e.g. late -> early
      * @return
      */
-    public DatamuseAPI antonymsOf(String word){
+    public DatamuseAndroid antonymsOf(String word){
         checkForMultipleParams();
 
         requestUrl += "rel_ant=" + word;
+
+        return this;
+    }
+
+    /**
+     * Return results that are direct hypernyms of the specified word, e.g. gondola -> boat, because a gondola *is a kind/type of* boat
+     * @param word results will be direct hypernyms of this word
+     * @return
+     */
+    public DatamuseAndroid isAKindOf(String word){
+        checkForMultipleParams();
+
+        requestUrl += "rel_spc=" + word;
+
+        return this;
+    }
+
+    /**
+     * Return results that are direct hyponyms of the specified word, e.g. boat -> gondola, because boat is *more genral than* gondola
+     * Other examples:
+     * bird -> parrot
+     * fish -> salmon
+     * @param word the general term, e.g. boat, bird, fish
+     * @return
+     */
+    public DatamuseAndroid isMoreGeneralThan(String word){
+        checkForMultipleParams();
+
+        requestUrl += "rel_gen=" + word;
+
+        return this;
+    }
+
+    /**
+     * Return results that are direct holonyms of the specified word, e.g. car -> accelerator, face -> eye, etc.
+     * @param word The specified word
+     * @return
+     */
+    public DatamuseAndroid comprises(String word){
+        checkForMultipleParams();
+
+        requestUrl += "rel_com=" + word;
+
+        return this;
+    }
+
+    /**
+     * Return results that are direct meronyms of the specified word, e.g. trunk -> tree, eye -> face, etc.
+     * @param word The specified word
+     * @return
+     */
+    public DatamuseAndroid partOf(String word){
+        checkForMultipleParams();
+
+        requestUrl += "rel_par=" + word;
+
+        return this;
+    }
+
+    /**
+     * Return results that are frequent followers of the specified word, e.g. wreak -> havoc, digital -> camera, etc.
+     * @param word results will be words that frequently appear after this word
+     * @return
+     */
+    public DatamuseAndroid frequentFollowersOf(String word){
+        checkForMultipleParams();
+
+        requestUrl += "rel_bga=" + word;
+
+        return this;
+    }
+
+    /**
+     * Return results that are frequent predecessors of the specified word, e.g. havoc -> wreak, oomputer -> desktop, etc.
+     * @param word results will be words that frequently appear before this word
+     * @return
+     */
+    public DatamuseAndroid frequentPredecessorsOf(String word){
+        checkForMultipleParams();
+
+        requestUrl += "rel_bgb=" + word;
 
         return this;
     }
@@ -138,7 +245,7 @@ public class DatamuseAPI {
      * @param word results will rhyme with this word, e.g. spade -> aid
      * @return
      */
-    public DatamuseAPI rhymesWith(String word){
+    public DatamuseAndroid rhymesWith(String word){
         checkForMultipleParams();
 
         requestUrl += "rel_rhy=" + word;
@@ -151,7 +258,7 @@ public class DatamuseAPI {
      * @param word results will approximately rhyme with this word, e.g. forest -> chorus
      * @return
      */
-    public DatamuseAPI approximatelyRhymesWith(String word){
+    public DatamuseAndroid approximatelyRhymesWith(String word){
         checkForMultipleParams();
 
         requestUrl += "rel_nry=" + word;
@@ -164,7 +271,7 @@ public class DatamuseAPI {
      * @param word results will sound like this word, e.g. course -> coarse
      * @return
      */
-    public DatamuseAPI homophonesOf(String word){
+    public DatamuseAndroid homophonesOf(String word){
         checkForMultipleParams();
 
         requestUrl += "rel_hom=" + word;
@@ -177,7 +284,7 @@ public class DatamuseAPI {
      * @param word results will match the consonants of the specified word, e.g. sample -> simple, semple, sam paul
      * @return
      */
-    public DatamuseAPI consonantMatch(String word){
+    public DatamuseAndroid consonantMatch(String word){
         checkForMultipleParams();
 
         requestUrl += "rel_cns=" + word;
@@ -190,7 +297,7 @@ public class DatamuseAPI {
      * @param topicWords An array of up to 5 topic words to skew the results towards
      * @return
      */
-    public DatamuseAPI topicWords(String[] topicWords){
+    public DatamuseAndroid topicWords(String[] topicWords){
         if(topicWords.length > 5){
             throw new IllegalArgumentException("You must provide no more than 5 topic words");
         }
@@ -213,7 +320,7 @@ public class DatamuseAPI {
      * @param word the word that appears immediately to the left of the target word in a sentence
      * @return
      */
-    public DatamuseAPI leftContext(String word){
+    public DatamuseAndroid leftContext(String word){
         checkForMultipleParams();
 
         requestUrl += "lc=" + word;
@@ -226,7 +333,7 @@ public class DatamuseAPI {
      * @param word the word that appears immediately to the right of the target word in a sentence
      * @return
      */
-    public DatamuseAPI rightContext(String word){
+    public DatamuseAndroid rightContext(String word){
         checkForMultipleParams();
 
         requestUrl += "rc=" + word;
@@ -239,7 +346,7 @@ public class DatamuseAPI {
      * @param numResults the maximum number of results to return
      * @return
      */
-    public DatamuseAPI maxResults(int numResults){
+    public DatamuseAndroid maxResults(int numResults){
         if(numResults > 1000){
             throw new IllegalArgumentException("Maximum number of results must not exceed 1000");
         }
@@ -261,7 +368,7 @@ public class DatamuseAPI {
      * @param flags the list of single-letter codes
      * @return
      */
-    public DatamuseAPI setMetadataFlags(String[] flags){
+    public DatamuseAndroid setMetadataFlags(String[] flags){
         boolean validFlags = true;
 
         for (String flag : flags){
@@ -348,7 +455,7 @@ public class DatamuseAPI {
 
         @Override
         protected void onPostExecute(Void result){
-            datamuseAPIResultsListener.onResultsSuccess(words);
+            datamuseAndroidResultsListener.onResultsSuccess(words);
         }
     }
 

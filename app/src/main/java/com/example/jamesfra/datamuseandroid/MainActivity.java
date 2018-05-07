@@ -1,6 +1,5 @@
-package com.example.jamesfra.datamuseapiwrapper;
+package com.example.jamesfra.datamuseandroid;
 
-import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -8,24 +7,24 @@ import android.widget.Button;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements DatamuseAPIResultsListener {
+public class MainActivity extends AppCompatActivity implements DatamuseAndroidResultsListener {
 
-    private DatamuseAPIResultsListener datamuseAPIResultsListener;
+    private DatamuseAndroidResultsListener datamuseAndroidResultsListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        this.datamuseAPIResultsListener = this;
+        this.datamuseAndroidResultsListener = this;
 
         Button buttonTestAPICall = (Button) findViewById(R.id.buttonTestAPICall);
 
         buttonTestAPICall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatamuseAPI datamuseAPI = new DatamuseAPI();
-                datamuseAPI.withResultsListener(datamuseAPIResultsListener).meaningLike("test").get();
+                DatamuseAndroid datamuseAndroid = new DatamuseAndroid();
+                datamuseAndroid.withResultsListener(datamuseAndroidResultsListener).meaningLike("test").soundsLike("ample").get();
             }
         });
     }
