@@ -25,7 +25,7 @@ public void onResultsSucess(ArrayList<Word> words) {
 }
 ```
 
-## To make an API call (example for getting synonyms of a word)
+## To make an API call
 
 ### Option 1
 ```
