@@ -26,7 +26,7 @@ public void onResultsSucess(ArrayList<Word> words) {
 
 ### Option 2 (OOP + reuse same DatamuseAndroid object)
 
-Whenever you call .get(), the request is made and then the URL reset, allowing you to reuse the same DatamuseAndroid object for multiple queries.
+Whenever you call .get(), the request is made and then the URL is reset, allowing you to reuse the same DatamuseAndroid object for multiple queries.
 
 ```
 DatamuseAndroid datamuseAndroid = new DatamuseAndroid();
