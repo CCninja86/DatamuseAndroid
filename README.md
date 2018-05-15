@@ -52,6 +52,6 @@ DatamuseAndroid datamuseAndroid = new DatamuseAndroid(resetUrl);
 datamuseAndroid.withResultsListener(myResultsListener).soundsLike("flight").spelledLike("f???t").get();
 ```
 
-### Bugs and Feature Requests
+# Bugs and Feature Requests
 
 To report a bug or request a feature, open an issue. You can track progress on the waffle.io board. Just click on the badge at the top of this README.
