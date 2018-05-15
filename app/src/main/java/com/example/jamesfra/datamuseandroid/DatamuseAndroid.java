@@ -25,7 +25,11 @@ public class DatamuseAndroid {
     private static Map<String, String> validMetadataFlagsMap;
     private static String validMetadataFlagsString = "";
 
-    public DatamuseAndroid() {
+    private boolean resetUrlOnRequest;
+
+    public DatamuseAndroid(boolean resetUrlOnRequest) {
+        this.resetUrlOnRequest = resetUrlOnRequest;
+
         gson = new Gson();
         validMetadataFlagsMap = new HashMap<>();
         validMetadataFlagsMap.put("d", "Definitions");
@@ -442,7 +446,7 @@ public class DatamuseAndroid {
      * Execute the query. The results will be returned as an ArrayList of Word objects.
      */
     public void get(){
-        new ExecuteAPIQueryTask(requestUrl).execute();
+        new ExecuteAPIQueryTask(requestUrl, resetUrlOnRequest).execute();
     }
 
     private void checkForMultipleParams(){
@@ -456,7 +460,9 @@ public class DatamuseAndroid {
         private String apiRequestUrl;
         private ArrayList<Word> words;
 
-        private ExecuteAPIQueryTask(String url){
+        private boolean resetUrlOnRequest;
+
+        private ExecuteAPIQueryTask(String url, boolean resetUrlOnRequest){
             this.apiRequestUrl = url;
             this.words = new ArrayList<>();
         }
@@ -495,7 +501,10 @@ public class DatamuseAndroid {
 
         @Override
         protected void onPostExecute(Void result){
-            requestUrl = "https://api.datamuse.com/words?";
+            if(resetUrlOnRequest){
+                requestUrl = "https://api.datamuse.com/words?";
+            }
+
             datamuseAndroidResultsListener.onResultsSuccess(words);
         }
     }
