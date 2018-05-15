@@ -35,7 +35,7 @@ new DatamuseAndroid(resetUrl).withResultsListener(myResultsListener).synonymsOf(
 
 ### Option 2 (OOP + reuse same DatamuseAndroid object)
 
-Whenever you call .get(), the request is made and then the URL is reset, allowing you to reuse the same DatamuseAndroid object for multiple queries.
+Whenever you call .get(), if resetUrl is true, the request is made and then the URL is reset, allowing you to reuse the same DatamuseAndroid object for multiple queries. If resetUrl is false, you can simply call .get() again on the exisitng DatamuseAndroid objec to execute the existing query again.
 
 ```
 boolean resetUrl = false;
