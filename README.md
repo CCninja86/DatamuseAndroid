@@ -3,6 +3,10 @@ A WIP Android Library for acessing the Datamuse Word API. https://www.datamuse.c
 
 # How to use
 
+## Add Gradle dependency
+
+`implementation 'nz.co.ninjastudios.datamuseandroid:datamuse-android:1.0'`
+
 ## Implement Interface
 
 `public class MainActivity extends AppCompatActivity implements DatamuseAndroidResultsListener`
