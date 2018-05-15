@@ -50,3 +50,7 @@ boolean resetUrl = true;
 DatamuseAndroid datamuseAndroid = new DatamuseAndroid(resetUrl);
 datamuseAndroid.withResultsListener(myResultsListener).soundsLike("flight").spelledLike("f???t").get();
 ```
+
+### Bugs and Feature Requests
+
+To report a bug or request a feature, open an issue. You can track progress on the waffle.io board.
