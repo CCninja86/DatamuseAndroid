@@ -22,8 +22,19 @@ public void onResultsSucess(ArrayList<Word> words) {
 
 ### Option 1
 
-`new DatamuseAndroid().withResultsListener(this).synonymsOf("practical").get();`
+`new DatamuseAndroid().withResultsListener(myResultsListener).synonymsOf("practical").get();`
 
-### Option 2 (WIP)
+### Option 2 (OOP + reuse same DatamuseAndroid object)
 
-This option will be available shortly in the next version, which will allow reuse of the same DatamuseAndroid object
+```
+DatamuseAndroid datamuseAndroid = new DatamuseAndroid();
+datamuseAndroid.withResultsListener(myResultsListener);
+datamuseAndroid.soundsLike("flight");
+datamuseAndroid.spelledLike("f???t");
+datamuseAndroid.get();
+```
+
+```
+DatamuseAndroid datamuseAndroid = new DatamuseAndroid();
+datamuseAndroid.withResultsListener(myResultsListener).soundsLike("flight").spelledLike("f???t").get();
+```
