@@ -21,15 +21,18 @@ public void onResultsSucess(ArrayList<Word> words) {
 ## To make an API call (example for getting synonyms of a word)
 
 ### Option 1
-
-`new DatamuseAndroid().withResultsListener(myResultsListener).synonymsOf("practical").get();`
+```
+boolean resetUrl = true;
+new DatamuseAndroid(resetUrl).withResultsListener(myResultsListener).synonymsOf("practical").get();
+```
 
 ### Option 2 (OOP + reuse same DatamuseAndroid object)
 
 Whenever you call .get(), the request is made and then the URL is reset, allowing you to reuse the same DatamuseAndroid object for multiple queries.
 
 ```
-DatamuseAndroid datamuseAndroid = new DatamuseAndroid();
+boolean resetUrl = false;
+DatamuseAndroid datamuseAndroid = new DatamuseAndroid(resetUrl);
 datamuseAndroid.withResultsListener(myResultsListener);
 datamuseAndroid.soundsLike("flight");
 datamuseAndroid.spelledLike("f???t");
@@ -37,6 +40,7 @@ datamuseAndroid.get();
 ```
 
 ```
-DatamuseAndroid datamuseAndroid = new DatamuseAndroid();
+boolean resetUrl = true;
+DatamuseAndroid datamuseAndroid = new DatamuseAndroid(resetUrl);
 datamuseAndroid.withResultsListener(myResultsListener).soundsLike("flight").spelledLike("f???t").get();
 ```
