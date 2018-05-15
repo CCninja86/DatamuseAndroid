@@ -495,6 +495,7 @@ public class DatamuseAndroid {
 
         @Override
         protected void onPostExecute(Void result){
+            requestUrl = "https://api.datamuse.com/words?";
             datamuseAndroidResultsListener.onResultsSuccess(words);
         }
     }
