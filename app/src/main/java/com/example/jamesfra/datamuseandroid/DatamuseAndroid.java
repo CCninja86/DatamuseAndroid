@@ -60,9 +60,11 @@ public class DatamuseAndroid {
      * @return
      */
     public DatamuseAndroid meaningLike(String word){
-        checkForMultipleParams();
+        if(word != null && !word.isEmpty()){
+            checkForMultipleParams();
 
-        requestUrl += "ml=" + word;
+            requestUrl += "ml=" + word;
+        }
 
         return this;
     }
@@ -73,9 +75,11 @@ public class DatamuseAndroid {
      * @return
      */
     public DatamuseAndroid soundsLike(String word){
-        checkForMultipleParams();
+        if(word != null && !word.isEmpty()){
+            checkForMultipleParams();
 
-        requestUrl += "sl=" + word;
+            requestUrl += "sl=" + word;
+        }
 
         return this;
     }
@@ -87,207 +91,239 @@ public class DatamuseAndroid {
      * @return
      */
     public DatamuseAndroid spelledLike(String pattern){
-        checkForMultipleParams();
+        if(pattern != null && !pattern.isEmpty()){
+            checkForMultipleParams();
 
-        requestUrl += "sp=" + pattern;
+            requestUrl += "sp=" + pattern;
+        }
 
         return this;
     }
 
     /**
-     * Return results that are popular nouns modified by the given adjective, e.g. gradual -> increase, long -> time, etc.
+     * Return results that are popular nouns modified by the given adjective, e.g. gradual - increase, long - time, etc.
      * @param adjective the adjective
      * @return
      */
     public DatamuseAndroid nounsModifiedByAdjective(String adjective){
-        checkForMultipleParams();
+        if(adjective != null && !adjective.isEmpty()){
+            checkForMultipleParams();
 
-        requestUrl += "rel_jja=" + adjective;
+            requestUrl += "rel_jja=" + adjective;
+        }
 
         return this;
     }
 
     /**
-     * Return results that are popular adjectives used to modify the given noun, e.g. beach -> sandy, tree -> tall, etc.
+     * Return results that are popular adjectives used to modify the given noun, e.g. beach - sandy, tree - tall, etc.
      * @param noun the noun
      * @return
      */
     public DatamuseAndroid adjectivesUsedToModifyNoun(String noun){
-        checkForMultipleParams();
+        if(noun != null && !noun.isEmpty()){
+            checkForMultipleParams();
 
-        requestUrl += "rel_jjb=" + noun;
+            requestUrl += "rel_jjb=" + noun;
+        }
 
         return this;
     }
 
     /**
      * Return words that are synonyms of the specified word
-     * @param word results will be synonyms of this word, e.g. ocean -> sea
+     * @param word results will be synonyms of this word, e.g. ocean - sea
      * @return
      */
     public DatamuseAndroid synonymsOf(String word){
-        checkForMultipleParams();
+        if(word != null && !word.isEmpty()){
+            checkForMultipleParams();
 
-        requestUrl += "rel_syn=" + word;
+            requestUrl += "rel_syn=" + word;
+        }
 
         return this;
     }
 
     /**
      * Return words that are triggered by the specified word
-     * @param word results will be triggered by this word, e.g. cow -> milking
+     * @param word results will be triggered by this word, e.g. cow - milking
      * @return
      */
     public DatamuseAndroid triggeredBy(String word){
-        checkForMultipleParams();
+        if(word != null && !word.isEmpty()){
+            checkForMultipleParams();
 
-        requestUrl += "rel_trg=" + word;
+            requestUrl += "rel_trg=" + word;
+        }
 
         return this;
     }
 
     /**
      * Return words that are antonyms of the specified word
-     * @param word results will be antonyms of this word, e.g. late -> early
+     * @param word results will be antonyms of this word, e.g. late - early
      * @return
      */
     public DatamuseAndroid antonymsOf(String word){
-        checkForMultipleParams();
+        if(word != null && !word.isEmpty()){
+            checkForMultipleParams();
 
-        requestUrl += "rel_ant=" + word;
+            requestUrl += "rel_ant=" + word;
+        }
 
         return this;
     }
 
     /**
-     * Return results that are direct hypernyms of the specified word, e.g. gondola -> boat, because a gondola *is a kind/type of* boat
+     * Return results that are direct hypernyms of the specified word, e.g. gondola - boat, because a gondola *is a kind/type of* boat
      * @param word results will be direct hypernyms of this word
      * @return
      */
     public DatamuseAndroid isAKindOf(String word){
-        checkForMultipleParams();
+        if(word != null && !word.isEmpty()){
+            checkForMultipleParams();
 
-        requestUrl += "rel_spc=" + word;
+            requestUrl += "rel_spc=" + word;
+        }
 
         return this;
     }
 
     /**
-     * Return results that are direct hyponyms of the specified word, e.g. boat -> gondola, because boat is *more genral than* gondola
+     * Return results that are direct hyponyms of the specified word, e.g. boat - gondola, because boat is *more genral than* gondola
      * Other examples:
-     * bird -> parrot
-     * fish -> salmon
+     * bird - parrot
+     * fish - salmon
      * @param word the general term, e.g. boat, bird, fish
      * @return
      */
     public DatamuseAndroid isMoreGeneralThan(String word){
-        checkForMultipleParams();
+        if(word != null && !word.isEmpty()){
+            checkForMultipleParams();
 
-        requestUrl += "rel_gen=" + word;
+            requestUrl += "rel_gen=" + word;
+        }
 
         return this;
     }
 
     /**
-     * Return results that are direct holonyms of the specified word, e.g. car -> accelerator, face -> eye, etc.
+     * Return results that are direct holonyms of the specified word, e.g. car - accelerator, face - eye, etc.
      * @param word The specified word
      * @return
      */
     public DatamuseAndroid comprises(String word){
-        checkForMultipleParams();
+        if(word != null && !word.isEmpty()){
+            checkForMultipleParams();
 
-        requestUrl += "rel_com=" + word;
+            requestUrl += "rel_com=" + word;
+        }
 
         return this;
     }
 
     /**
-     * Return results that are direct meronyms of the specified word, e.g. trunk -> tree, eye -> face, etc.
+     * Return results that are direct meronyms of the specified word, e.g. trunk - tree, eye - face, etc.
      * @param word The specified word
      * @return
      */
     public DatamuseAndroid partOf(String word){
-        checkForMultipleParams();
+        if(word != null && !word.isEmpty()){
+            checkForMultipleParams();
 
-        requestUrl += "rel_par=" + word;
+            requestUrl += "rel_par=" + word;
+        }
 
         return this;
     }
 
     /**
-     * Return results that are frequent followers of the specified word, e.g. wreak -> havoc, digital -> camera, etc.
+     * Return results that are frequent followers of the specified word, e.g. wreak - havoc, digital - camera, etc.
      * @param word results will be words that frequently appear after this word
      * @return
      */
     public DatamuseAndroid frequentFollowersOf(String word){
-        checkForMultipleParams();
+        if(word != null && !word.isEmpty()){
+            checkForMultipleParams();
 
-        requestUrl += "rel_bga=" + word;
+            requestUrl += "rel_bga=" + word;
+        }
 
         return this;
     }
 
     /**
-     * Return results that are frequent predecessors of the specified word, e.g. havoc -> wreak, oomputer -> desktop, etc.
+     * Return results that are frequent predecessors of the specified word, e.g. havoc - wreak, oomputer - desktop, etc.
      * @param word results will be words that frequently appear before this word
      * @return
      */
     public DatamuseAndroid frequentPredecessorsOf(String word){
-        checkForMultipleParams();
+        if(word != null && !word.isEmpty()){
+            checkForMultipleParams();
 
-        requestUrl += "rel_bgb=" + word;
+            requestUrl += "rel_bgb=" + word;
+        }
 
         return this;
     }
 
     /**
      * Return words that rhyme with the specified word
-     * @param word results will rhyme with this word, e.g. spade -> aid
+     * @param word results will rhyme with this word, e.g. spade - aid
      * @return
      */
     public DatamuseAndroid rhymesWith(String word){
-        checkForMultipleParams();
+        if(word != null && !word.isEmpty()){
+            checkForMultipleParams();
 
-        requestUrl += "rel_rhy=" + word;
+            requestUrl += "rel_rhy=" + word;
+        }
 
         return this;
     }
 
     /**
      * Return words that approximately rhyme with the specified word
-     * @param word results will approximately rhyme with this word, e.g. forest -> chorus
+     * @param word results will approximately rhyme with this word, e.g. forest - chorus
      * @return
      */
     public DatamuseAndroid approximatelyRhymesWith(String word){
-        checkForMultipleParams();
+        if(word != null && !word.isEmpty()){
+            checkForMultipleParams();
 
-        requestUrl += "rel_nry=" + word;
+            requestUrl += "rel_nry=" + word;
+        }
 
         return this;
     }
 
     /**
      * Return words that sound like the specified word
-     * @param word results will sound like this word, e.g. course -> coarse
+     * @param word results will sound like this word, e.g. course - coarse
      * @return
      */
     public DatamuseAndroid homophonesOf(String word){
-        checkForMultipleParams();
+        if(word != null & !word.isEmpty()){
+            checkForMultipleParams();
 
-        requestUrl += "rel_hom=" + word;
+            requestUrl += "rel_hom=" + word;
+        }
 
         return this;
     }
 
     /**
      * Return words that match consonants of the specified word
-     * @param word results will match the consonants of the specified word, e.g. sample -> simple, semple, sam paul
+     * @param word results will match the consonants of the specified word, e.g. sample - simple, semple, sam paul
      * @return
      */
     public DatamuseAndroid consonantMatch(String word){
-        checkForMultipleParams();
+        if(word != null && !word.isEmpty()){
+            checkForMultipleParams();
 
-        requestUrl += "rel_cns=" + word;
+            requestUrl += "rel_cns=" + word;
+        }
 
         return this;
     }
@@ -298,8 +334,8 @@ public class DatamuseAndroid {
      * @return
      */
     public DatamuseAndroid topicWords(String[] topicWords){
-        if(topicWords.length > 5){
-            throw new IllegalArgumentException("You must provide no more than 5 topic words");
+        if(topicWords.length > 5 || topicWords.length == 0){
+            throw new IllegalArgumentException("You must provide at least 1, and no more than 5, topic words");
         }
 
         checkForMultipleParams();
@@ -321,9 +357,11 @@ public class DatamuseAndroid {
      * @return
      */
     public DatamuseAndroid leftContext(String word){
-        checkForMultipleParams();
+        if(word != null && !word.isEmpty()){
+            checkForMultipleParams();
 
-        requestUrl += "lc=" + word;
+            requestUrl += "lc=" + word;
+        }
 
         return this;
     }
@@ -334,9 +372,11 @@ public class DatamuseAndroid {
      * @return
      */
     public DatamuseAndroid rightContext(String word){
-        checkForMultipleParams();
+        if(word != null && !word.isEmpty()){
+            checkForMultipleParams();
 
-        requestUrl += "rc=" + word;
+            requestUrl += "rc=" + word;
+        }
 
         return this;
     }
@@ -459,4 +499,43 @@ public class DatamuseAndroid {
         }
     }
 
+    public static DatamuseAndroidResultsListener getDatamuseAndroidResultsListener() {
+        return datamuseAndroidResultsListener;
+    }
+
+    public static void setDatamuseAndroidResultsListener(DatamuseAndroidResultsListener datamuseAndroidResultsListener) {
+        DatamuseAndroid.datamuseAndroidResultsListener = datamuseAndroidResultsListener;
+    }
+
+    public static String getRequestUrl() {
+        return requestUrl;
+    }
+
+    public static void setRequestUrl(String requestUrl) {
+        DatamuseAndroid.requestUrl = requestUrl;
+    }
+
+    public static String getMetadataParam() {
+        return metadataParam;
+    }
+
+    public static void setMetadataParam(String metadataParam) {
+        DatamuseAndroid.metadataParam = metadataParam;
+    }
+
+    public static Map<String, String> getValidMetadataFlagsMap() {
+        return validMetadataFlagsMap;
+    }
+
+    public static void setValidMetadataFlagsMap(Map<String, String> validMetadataFlagsMap) {
+        DatamuseAndroid.validMetadataFlagsMap = validMetadataFlagsMap;
+    }
+
+    public static String getValidMetadataFlagsString() {
+        return validMetadataFlagsString;
+    }
+
+    public static void setValidMetadataFlagsString(String validMetadataFlagsString) {
+        DatamuseAndroid.validMetadataFlagsString = validMetadataFlagsString;
+    }
 }
