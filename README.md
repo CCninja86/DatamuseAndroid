@@ -1,10 +1,10 @@
 # DatamuseAndroid
 A WIP Android Library for acessing the Datamuse Word API. https://www.datamuse.com/api/
 
-## New in version 1.0.2
+### New in version 1.0.2
 Add option to either keep or reset request URL once request has been made. This allows for reuse of the same object and request in multiple places, i.e. build once, use anywhere.
 
-## New in version 1.0.1
+### New in version 1.0.1
 Add ability to reuse the same DatamuseAndroid object
 
 # How to use
