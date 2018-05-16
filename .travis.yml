@@ -20,4 +20,4 @@ cache:
     - $HOME/.gradle/wrapper/
 
 script:
-  - gradlew build connectedCheck
+  - gradle build connectedCheck
