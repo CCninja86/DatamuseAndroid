@@ -185,6 +185,7 @@ public class DatamuseAndroid {
      * @return
      */
     public DatamuseAndroid isAKindOf(String word){
+        
         if(word != null && !word.isEmpty()){
             checkForMultipleParams();
 
