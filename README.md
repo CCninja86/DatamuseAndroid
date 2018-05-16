@@ -1,4 +1,7 @@
 [![Waffle.io - Columns and their card count](https://badge.waffle.io/CCninja86/DatamuseAndroid.png?columns=all)](https://waffle.io/CCninja86/DatamuseAndroid?utm_source=badge)
+
+[![Build Status](https://travis-ci.org/CCninja86/DatamuseAndroid.svg?branch=master)](https://travis-ci.org/CCninja86/DatamuseAndroid)
+
 # DatamuseAndroid
 A WIP Android Library for acessing the Datamuse Word API. https://www.datamuse.com/api/
 
