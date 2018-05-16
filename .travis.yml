@@ -1,6 +1,9 @@
 language: android
 jdk: oraclejdk8
 
+os:
+  - linux
+
 android:
   components:
     - build-tools-27.0.3
