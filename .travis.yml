@@ -9,7 +9,7 @@ android:
     - android-27
 
 os:
-  - windows
+  - linux
 
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
