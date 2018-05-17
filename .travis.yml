@@ -25,6 +25,3 @@ before_script:
   
 script:
   - ./gradlew clean build
-  
-notifications:
-  webhooks: https://maker.ifttt.com/trigger/travis_ci_datamuseandroid/with/key/b2G71lyF5hnO5cO3avYaNA3kRdCe-nZsFOMhWUADAAo
