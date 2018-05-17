@@ -21,8 +21,10 @@ cache:
     - $HOME/.android/build-cache
     
 before_script:
-  - chmod +x gradlew
-  
+  - chmod +x gradlew  
   
 script:
   - ./gradlew clean build
+  
+notifications:
+  webhooks: https://maker.ifttt.com/trigger/travis_ci_datamuseandroid/with/key/b2G71lyF5hnO5cO3avYaNA3kRdCe-nZsFOMhWUADAAo
