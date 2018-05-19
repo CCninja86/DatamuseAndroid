@@ -1,4 +1,4 @@
-package com.example.jamesfra.datamuseandroid;
+package nz.co.ninjastudios.datamuseandroid;
 
 import android.os.AsyncTask;
 
@@ -466,6 +466,7 @@ public class DatamuseAndroid {
         private ExecuteAPIQueryTask(String url, boolean resetUrlOnRequest){
             this.apiRequestUrl = url;
             this.words = new ArrayList<>();
+            this.resetUrlOnRequest = resetUrlOnRequest;
         }
 
         @Override

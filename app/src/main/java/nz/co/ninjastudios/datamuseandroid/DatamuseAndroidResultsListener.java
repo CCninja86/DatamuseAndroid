@@ -1,4 +1,4 @@
-package com.example.jamesfra.datamuseandroid;
+package nz.co.ninjastudios.datamuseandroid;
 
 import java.util.ArrayList;
 

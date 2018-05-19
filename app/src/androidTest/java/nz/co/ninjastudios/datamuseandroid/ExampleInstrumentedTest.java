@@ -1,4 +1,4 @@
-package com.example.jamesfra.datamuseandroid;
+package nz.co.ninjastudios.datamuseandroid;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.jamesfra.datamuseandroid", appContext.getPackageName());
+        assertEquals("com.co.ninjastudios.datamuseandroid", appContext.getPackageName());
     }
 }
