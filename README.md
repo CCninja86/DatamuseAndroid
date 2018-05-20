@@ -13,7 +13,7 @@ A WIP Android Library for acessing the Datamuse Word API. https://www.datamuse.c
 
 ## Add Gradle dependency
 
-`implementation 'nz.co.ninjastudios.datamuseandroid:datamuse-android:1.0.2'`
+`implementation 'nz.co.ninjastudios.datamuseandroid:datamuse-android:1.0.4'`
 
 ## Implement Interface
 
