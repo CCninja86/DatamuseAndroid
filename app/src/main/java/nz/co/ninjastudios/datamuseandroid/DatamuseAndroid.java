@@ -440,6 +440,10 @@ public class DatamuseAndroid {
 
         requestUrl += metadataParam;
 
+        if(metadataParam.contains("r")){
+            requestUrl += "&ipa=1";
+        }
+
         return this;
     }
 
