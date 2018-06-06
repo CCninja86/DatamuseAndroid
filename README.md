@@ -27,8 +27,6 @@ public void onResultsSucess(ArrayList<Word> words) {
 ```
 
 ## To make an API call
-
-### Option 1
 ```
 boolean resetUrl = true;
 DatamuseAndroid datamuseAndroid = new DatamuseAndroid(resetUrl)
