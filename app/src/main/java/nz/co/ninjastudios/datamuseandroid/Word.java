@@ -45,4 +45,12 @@ public class Word {
     public void setNumSyllables(int numSyllables) {
         this.numSyllables = numSyllables;
     }
+
+    public String[] getDefs() {
+        return defs;
+    }
+
+    public void setDefs(String[] defs) {
+        this.defs = defs;
+    }
 }
