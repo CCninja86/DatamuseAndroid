@@ -16,14 +16,14 @@ import java.util.Map;
 
 public class DatamuseAndroid {
 
-    private static DatamuseAndroidResultsListener datamuseAndroidResultsListener;
-    private static Gson gson;
+    private DatamuseAndroidResultsListener datamuseAndroidResultsListener;
+    private Gson gson;
 
-    private static String requestUrl = "https://api.datamuse.com/words?";
-    private static String metadataParam = "md=s";
+    private String requestUrl = "https://api.datamuse.com/words?";
+    private String metadataParam = "md=s";
 
-    private static Map<String, String> validMetadataFlagsMap;
-    private static String validMetadataFlagsString = "";
+    private Map<String, String> validMetadataFlagsMap;
+    private String validMetadataFlagsString = "";
 
     private boolean resetUrlOnRequest;
 
@@ -52,10 +52,8 @@ public class DatamuseAndroid {
      * @param resultsListener the instance of DatamuseAndroidResultsListener to use
      * @return
      */
-    public DatamuseAndroid withResultsListener(DatamuseAndroidResultsListener resultsListener){
+    public void setResultsListener(DatamuseAndroidResultsListener resultsListener){
         datamuseAndroidResultsListener = resultsListener;
-
-        return this;
     }
 
     /**
@@ -63,14 +61,12 @@ public class DatamuseAndroid {
      * @param word results will have a meaning related to this word
      * @return
      */
-    public DatamuseAndroid meaningLike(String word){
+    public void meaningLike(String word){
         if(word != null && !word.isEmpty()){
             checkForMultipleParams();
 
             requestUrl += "ml=" + word;
         }
-
-        return this;
     }
 
     /**
@@ -78,14 +74,12 @@ public class DatamuseAndroid {
      * @param word results will be pronounced similarly to this string of characters
      * @return
      */
-    public DatamuseAndroid soundsLike(String word){
+    public void soundsLike(String word){
         if(word != null && !word.isEmpty()){
             checkForMultipleParams();
 
             requestUrl += "sl=" + word;
         }
-
-        return this;
     }
 
     /**
@@ -94,14 +88,12 @@ public class DatamuseAndroid {
      * @param pattern results will be spelled like this word or pattern
      * @return
      */
-    public DatamuseAndroid spelledLike(String pattern){
+    public void spelledLike(String pattern){
         if(pattern != null && !pattern.isEmpty()){
             checkForMultipleParams();
 
             requestUrl += "sp=" + pattern;
         }
-
-        return this;
     }
 
     /**
@@ -109,14 +101,12 @@ public class DatamuseAndroid {
      * @param adjective the adjective
      * @return
      */
-    public DatamuseAndroid nounsModifiedByAdjective(String adjective){
+    public void nounsModifiedByAdjective(String adjective){
         if(adjective != null && !adjective.isEmpty()){
             checkForMultipleParams();
 
             requestUrl += "rel_jja=" + adjective;
         }
-
-        return this;
     }
 
     /**
@@ -124,14 +114,12 @@ public class DatamuseAndroid {
      * @param noun the noun
      * @return
      */
-    public DatamuseAndroid adjectivesUsedToModifyNoun(String noun){
+    public void adjectivesUsedToModifyNoun(String noun){
         if(noun != null && !noun.isEmpty()){
             checkForMultipleParams();
 
             requestUrl += "rel_jjb=" + noun;
         }
-
-        return this;
     }
 
     /**
@@ -139,14 +127,12 @@ public class DatamuseAndroid {
      * @param word results will be synonyms of this word, e.g. ocean - sea
      * @return
      */
-    public DatamuseAndroid synonymsOf(String word){
+    public void synonymsOf(String word){
         if(word != null && !word.isEmpty()){
             checkForMultipleParams();
 
             requestUrl += "rel_syn=" + word;
         }
-
-        return this;
     }
 
     /**
@@ -154,14 +140,12 @@ public class DatamuseAndroid {
      * @param word results will be triggered by this word, e.g. cow - milking
      * @return
      */
-    public DatamuseAndroid triggeredBy(String word){
+    public void triggeredBy(String word){
         if(word != null && !word.isEmpty()){
             checkForMultipleParams();
 
             requestUrl += "rel_trg=" + word;
         }
-
-        return this;
     }
 
     /**
@@ -169,14 +153,12 @@ public class DatamuseAndroid {
      * @param word results will be antonyms of this word, e.g. late - early
      * @return
      */
-    public DatamuseAndroid antonymsOf(String word){
+    public void antonymsOf(String word){
         if(word != null && !word.isEmpty()){
             checkForMultipleParams();
 
             requestUrl += "rel_ant=" + word;
         }
-
-        return this;
     }
 
     /**
@@ -184,15 +166,13 @@ public class DatamuseAndroid {
      * @param word results will be direct hypernyms of this word
      * @return
      */
-    public DatamuseAndroid isAKindOf(String word){
+    public void isAKindOf(String word){
         
         if(word != null && !word.isEmpty()){
             checkForMultipleParams();
 
             requestUrl += "rel_spc=" + word;
         }
-
-        return this;
     }
 
     /**
@@ -203,14 +183,12 @@ public class DatamuseAndroid {
      * @param word the general term, e.g. boat, bird, fish
      * @return
      */
-    public DatamuseAndroid isMoreGeneralThan(String word){
+    public void isMoreGeneralThan(String word){
         if(word != null && !word.isEmpty()){
             checkForMultipleParams();
 
             requestUrl += "rel_gen=" + word;
         }
-
-        return this;
     }
 
     /**
@@ -218,14 +196,12 @@ public class DatamuseAndroid {
      * @param word The specified word
      * @return
      */
-    public DatamuseAndroid comprises(String word){
+    public void comprises(String word){
         if(word != null && !word.isEmpty()){
             checkForMultipleParams();
 
             requestUrl += "rel_com=" + word;
         }
-
-        return this;
     }
 
     /**
@@ -233,14 +209,12 @@ public class DatamuseAndroid {
      * @param word The specified word
      * @return
      */
-    public DatamuseAndroid partOf(String word){
+    public void partOf(String word){
         if(word != null && !word.isEmpty()){
             checkForMultipleParams();
 
             requestUrl += "rel_par=" + word;
         }
-
-        return this;
     }
 
     /**
@@ -248,14 +222,12 @@ public class DatamuseAndroid {
      * @param word results will be words that frequently appear after this word
      * @return
      */
-    public DatamuseAndroid frequentFollowersOf(String word){
+    public void frequentFollowersOf(String word){
         if(word != null && !word.isEmpty()){
             checkForMultipleParams();
 
             requestUrl += "rel_bga=" + word;
         }
-
-        return this;
     }
 
     /**
@@ -263,14 +235,12 @@ public class DatamuseAndroid {
      * @param word results will be words that frequently appear before this word
      * @return
      */
-    public DatamuseAndroid frequentPredecessorsOf(String word){
+    public void frequentPredecessorsOf(String word){
         if(word != null && !word.isEmpty()){
             checkForMultipleParams();
 
             requestUrl += "rel_bgb=" + word;
         }
-
-        return this;
     }
 
     /**
@@ -278,14 +248,12 @@ public class DatamuseAndroid {
      * @param word results will rhyme with this word, e.g. spade - aid
      * @return
      */
-    public DatamuseAndroid rhymesWith(String word){
+    public void rhymesWith(String word){
         if(word != null && !word.isEmpty()){
             checkForMultipleParams();
 
             requestUrl += "rel_rhy=" + word;
         }
-
-        return this;
     }
 
     /**
@@ -293,14 +261,12 @@ public class DatamuseAndroid {
      * @param word results will approximately rhyme with this word, e.g. forest - chorus
      * @return
      */
-    public DatamuseAndroid approximatelyRhymesWith(String word){
+    public void approximatelyRhymesWith(String word){
         if(word != null && !word.isEmpty()){
             checkForMultipleParams();
 
             requestUrl += "rel_nry=" + word;
         }
-
-        return this;
     }
 
     /**
@@ -308,14 +274,12 @@ public class DatamuseAndroid {
      * @param word results will sound like this word, e.g. course - coarse
      * @return
      */
-    public DatamuseAndroid homophonesOf(String word){
+    public void homophonesOf(String word){
         if(word != null & !word.isEmpty()){
             checkForMultipleParams();
 
             requestUrl += "rel_hom=" + word;
         }
-
-        return this;
     }
 
     /**
@@ -323,14 +287,12 @@ public class DatamuseAndroid {
      * @param word results will match the consonants of the specified word, e.g. sample - simple, semple, sam paul
      * @return
      */
-    public DatamuseAndroid consonantMatch(String word){
+    public void consonantMatch(String word){
         if(word != null && !word.isEmpty()){
             checkForMultipleParams();
 
             requestUrl += "rel_cns=" + word;
         }
-
-        return this;
     }
 
     /**
@@ -338,7 +300,7 @@ public class DatamuseAndroid {
      * @param topicWords An array of up to 5 topic words to skew the results towards
      * @return
      */
-    public DatamuseAndroid topicWords(String[] topicWords){
+    public void topicWords(String[] topicWords){
         if(topicWords.length > 5 || topicWords.length == 0){
             throw new IllegalArgumentException("You must provide at least 1, and no more than 5, topic words");
         }
@@ -352,8 +314,6 @@ public class DatamuseAndroid {
         }
 
         requestUrl = requestUrl.substring(0, requestUrl.length() - 1);
-
-        return this;
     }
 
     /**
@@ -361,14 +321,12 @@ public class DatamuseAndroid {
      * @param word the word that appears immediately to the left of the target word in a sentence
      * @return
      */
-    public DatamuseAndroid leftContext(String word){
+    public void leftContext(String word){
         if(word != null && !word.isEmpty()){
             checkForMultipleParams();
 
             requestUrl += "lc=" + word;
         }
-
-        return this;
     }
 
     /**
@@ -376,14 +334,12 @@ public class DatamuseAndroid {
      * @param word the word that appears immediately to the right of the target word in a sentence
      * @return
      */
-    public DatamuseAndroid rightContext(String word){
+    public void rightContext(String word){
         if(word != null && !word.isEmpty()){
             checkForMultipleParams();
 
             requestUrl += "rc=" + word;
         }
-
-        return this;
     }
 
     /**
@@ -391,7 +347,7 @@ public class DatamuseAndroid {
      * @param numResults the maximum number of results to return
      * @return
      */
-    public DatamuseAndroid maxResults(int numResults){
+    public void maxResults(int numResults){
         if(numResults > 1000){
             throw new IllegalArgumentException("Maximum number of results must not exceed 1000");
         }
@@ -399,8 +355,6 @@ public class DatamuseAndroid {
         checkForMultipleParams();
 
         requestUrl += "max=" + numResults;
-
-        return this;
     }
 
     /**
@@ -413,7 +367,7 @@ public class DatamuseAndroid {
      * @param flags the list of single-letter codes
      * @return
      */
-    public DatamuseAndroid setMetadataFlags(String[] flags){
+    public void setMetadataFlags(String[] flags){
         boolean validFlags = true;
 
         for (String flag : flags){
@@ -443,8 +397,6 @@ public class DatamuseAndroid {
         if(metadataParam.contains("r")){
             requestUrl += "&ipa=1";
         }
-
-        return this;
     }
 
     /**
@@ -460,7 +412,7 @@ public class DatamuseAndroid {
         }
     }
 
-    private static class ExecuteAPIQueryTask extends AsyncTask<Void, Void, Void> {
+    private class ExecuteAPIQueryTask extends AsyncTask<Void, Void, Void> {
 
         private String apiRequestUrl;
         private ArrayList<Word> words;
@@ -515,43 +467,43 @@ public class DatamuseAndroid {
         }
     }
 
-    public static DatamuseAndroidResultsListener getDatamuseAndroidResultsListener() {
+    public DatamuseAndroidResultsListener getDatamuseAndroidResultsListener() {
         return datamuseAndroidResultsListener;
     }
 
-    public static void setDatamuseAndroidResultsListener(DatamuseAndroidResultsListener datamuseAndroidResultsListener) {
-        DatamuseAndroid.datamuseAndroidResultsListener = datamuseAndroidResultsListener;
+    public void setDatamuseAndroidResultsListener(DatamuseAndroidResultsListener datamuseAndroidResultsListener) {
+        this.datamuseAndroidResultsListener = datamuseAndroidResultsListener;
     }
 
-    public static String getRequestUrl() {
+    public String getRequestUrl() {
         return requestUrl;
     }
 
-    public static void setRequestUrl(String requestUrl) {
-        DatamuseAndroid.requestUrl = requestUrl;
+    public void setRequestUrl(String requestUrl) {
+        this.requestUrl = requestUrl;
     }
 
-    public static String getMetadataParam() {
+    public String getMetadataParam() {
         return metadataParam;
     }
 
-    public static void setMetadataParam(String metadataParam) {
-        DatamuseAndroid.metadataParam = metadataParam;
+    public void setMetadataParam(String metadataParam) {
+        this.metadataParam = metadataParam;
     }
 
-    public static Map<String, String> getValidMetadataFlagsMap() {
+    public Map<String, String> getValidMetadataFlagsMap() {
         return validMetadataFlagsMap;
     }
 
-    public static void setValidMetadataFlagsMap(Map<String, String> validMetadataFlagsMap) {
-        DatamuseAndroid.validMetadataFlagsMap = validMetadataFlagsMap;
+    public void setValidMetadataFlagsMap(Map<String, String> validMetadataFlagsMap) {
+        this.validMetadataFlagsMap = validMetadataFlagsMap;
     }
 
-    public static String getValidMetadataFlagsString() {
+    public String getValidMetadataFlagsString() {
         return validMetadataFlagsString;
     }
 
-    public static void setValidMetadataFlagsString(String validMetadataFlagsString) {
-        DatamuseAndroid.validMetadataFlagsString = validMetadataFlagsString;
+    public void setValidMetadataFlagsString(String validMetadataFlagsString) {
+        this.validMetadataFlagsString = validMetadataFlagsString;
     }
 }
