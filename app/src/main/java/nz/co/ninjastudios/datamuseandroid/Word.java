@@ -5,11 +5,13 @@ public class Word {
     private String word;
     private int score;
     private String[] tags;
+    private String[] defs;
     private int numSyllables;
 
     public Word(){
         // Don't want array to be null when Gson parses the JSON string
         tags = new String[]{};
+        defs = new String[]{};
     }
 
     public String getWord() {
