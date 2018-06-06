@@ -13,7 +13,7 @@ A WIP Android Library for acessing the Datamuse Word API. https://www.datamuse.c
 
 ## Add Gradle dependency
 
-`implementation 'nz.co.ninjastudios.datamuseandroid:datamuse-android:1.0.5'`
+`implementation 'nz.co.ninjastudios.datamuseandroid:datamuse-android:1.0.7'`
 
 ## Implement Interface
 
@@ -31,26 +31,10 @@ public void onResultsSucess(ArrayList<Word> words) {
 ### Option 1
 ```
 boolean resetUrl = true;
-new DatamuseAndroid(resetUrl).withResultsListener(myResultsListener).synonymsOf("practical").get();
-```
-
-### Option 2 (OOP + reuse same DatamuseAndroid object)
-
-Whenever you call .get(), if resetUrl is true, the request is made and then the URL is reset, allowing you to reuse the same DatamuseAndroid object for multiple queries. If resetUrl is false, you can simply call .get() again on the exisitng DatamuseAndroid object to execute the existing query again.
-
-```
-boolean resetUrl = false;
-DatamuseAndroid datamuseAndroid = new DatamuseAndroid(resetUrl);
-datamuseAndroid.withResultsListener(myResultsListener);
-datamuseAndroid.soundsLike("flight");
-datamuseAndroid.spelledLike("f???t");
+DatamuseAndroid datamuseAndroid = new DatamuseAndroid(resetUrl)
+datamuseAndroid.setResultsListener(myResultsListener);
+datamuseAndroid.synonymsOf("practical")
 datamuseAndroid.get();
-```
-
-```
-boolean resetUrl = true;
-DatamuseAndroid datamuseAndroid = new DatamuseAndroid(resetUrl);
-datamuseAndroid.withResultsListener(myResultsListener).soundsLike("flight").spelledLike("f???t").get();
 ```
 
 # Bugs and Feature Requests
