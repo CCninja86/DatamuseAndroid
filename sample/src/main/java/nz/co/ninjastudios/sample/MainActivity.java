@@ -19,9 +19,9 @@ public class MainActivity extends AppCompatActivity implements DatamuseAndroidRe
         setContentView(R.layout.activity_main);
 
         datamuseAndroid = new DatamuseAndroid(true);
-        datamuseAndroid.withResultsListener(this);
-
-        datamuseAndroid.synonymsOf("practical").get();
+        datamuseAndroid.setResultsListener(this);
+        datamuseAndroid.synonymsOf("practical");
+        datamuseAndroid.get();
     }
 
     @Override
