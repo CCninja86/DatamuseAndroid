@@ -3,11 +3,11 @@ package nz.co.ninjastudios.sample;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.example.jamesfra.datamuseandroid.DatamuseAndroid;
-import com.example.jamesfra.datamuseandroid.DatamuseAndroidResultsListener;
-import com.example.jamesfra.datamuseandroid.Word;
-
 import java.util.ArrayList;
+
+import nz.co.ninjastudios.datamuseandroid.DatamuseAndroid;
+import nz.co.ninjastudios.datamuseandroid.DatamuseAndroidResultsListener;
+import nz.co.ninjastudios.datamuseandroid.Word;
 
 public class MainActivity extends AppCompatActivity implements DatamuseAndroidResultsListener {
 
